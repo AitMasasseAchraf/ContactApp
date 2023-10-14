@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Title of the document</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+   rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" 
+  crossorigin="anonymous"> 
+</head>
+<body   style="background-color: #f0f1f2;">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/groups">Groups</a>
+        </li>
+        
+         
+       
+      </ul>
+      <form class="d-flex" th:action="@{/search_groups}" method="post">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="nom">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+ 
+      
+    </div>
+  </div>
+</nav>
+<div class="container p-4">
+      <div class="row">
+          <div class="col-md-6 offset-md-3">
+             <div class="card">
+             <div class="card-body">
+             
+             <h4 class="tedxt-center text-primary"> Search Group Form </h4>
+             
+             
+             <form th:action="@{/save_groups}" method="post">
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Group Nom</label>
+    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="nom">
+  
+  </div>
+
+ 
+  <button type="submit" class="btn btn-primary">Add Group</button>
+</form>
+             
+  
+           
+   
+                 
+                 <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+
+      <th scope="col">Nom</th>
+     
+    </tr>
+  </thead>
+  <tbody>
+    <tr th:each="p :${searched_groups}">
+      <th scope="row">[[${p.id}]]</th>
+      <td >[[${p.nom}]]</td>
+    
+        <td> 
+         <a th:href="@{'/delete_group/'+${p.id}}" class="btn btn-sm btn-danger">Delete</a> 
+                  <a th:href="@{'/invite_cont/'+${p.nom}}" class="btn btn-sm btn-primary">Invite</a> 
+                  <a th:href="@{'/show_cont/'+${p.id}}" class="btn btn-sm btn-primary">show members</a> </td>
+    </tr>
+   
+  </tbody>
+</table>
+             
+             
+             
+             
+             
+             </div>
+             </div>
+          </div>
+      </div>
+ </div>            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" 
+integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+ crossorigin="anonymous"></script>
+</body>
+</html>
